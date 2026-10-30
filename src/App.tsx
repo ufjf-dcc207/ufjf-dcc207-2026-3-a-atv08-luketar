@@ -1,7 +1,8 @@
 import './App.css'
 import type { PacoteType } from './Types' 
 import Pacote from './Pacote'
-import { useState } from 'react';
+import { useState } from 'react'; 
+import ListagemDePacotes from './ListagemDePacotes'
 
 
 
@@ -40,12 +41,7 @@ function App() {
   return (
     <section>
       <h2>Pacote</h2>
-      <div className = 'pacotes'>
-        {pacotes.map(p => (
-         <Pacote pacote={p} key={p.id} acaoExcluir={excluirPacote} />
-        ))}
-
-      </div>
+      <ListagemDePacotes pacotes={pacotes} acaoExcluir={excluirPacote} />
     </section>
     
   )
