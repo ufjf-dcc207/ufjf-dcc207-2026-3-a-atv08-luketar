@@ -1,8 +1,9 @@
 import './App.css'
 import type { PacoteType } from './Types' 
 import Pacote from './Pacote'
-import { useState } from 'react'; 
+import { useReducer } from 'react'
 import ListagemDePacotes from './ListagemDePacotes'
+import pacoteReducer from "./pacoteReducer"
 
 
 
@@ -25,23 +26,13 @@ const data:Array<PacoteType> = [
 ]
 
 function App() {
-  const [pacotes, setPacotes] = useState(data);
-
-  function excluirPacote(id: string){
-    // const novoPacotes = [];
-    // for(let i = 0;i<pacotes.length;i++){
-    //   if(pacotes[i]!=pacote){
-    //     novoPacotes.push(pacotes[i]);
-    //   }
-    // }
-    const novoPacotes = pacotes.filter(p=>p.id!=id);
-    setPacotes(novoPacotes);
-  }
+  const [pacotes, dispacher] = useReducer(pacoteReducer,data);
+  
 
   return (
     <section>
       <h2>Pacote</h2>
-      <ListagemDePacotes pacotes={pacotes} acaoExcluir={excluirPacote} />
+      <ListagemDePacotes pacotes={pacotes} dispacher={dispacher}  />
     </section>
     
   )
